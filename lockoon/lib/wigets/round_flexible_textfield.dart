@@ -16,6 +16,12 @@ class RoundFlexibleTextField extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(28)),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(28)),
+            borderSide: BorderSide(
+              color: Theme.of(context).accentColor,
+            ),
+          ),
         ),
       ),
     );

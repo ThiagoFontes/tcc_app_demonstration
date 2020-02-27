@@ -12,7 +12,7 @@ class RoundButtonIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-        color: Colors.blueAccent,
+        color: Theme.of(context).accentColor,
         width: 56,
         height: 56,
         child: Material(

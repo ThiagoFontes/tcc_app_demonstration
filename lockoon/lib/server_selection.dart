@@ -8,9 +8,6 @@ class ServerSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Woops forgot your key?"),
-      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -44,7 +41,7 @@ class ServerSelection extends StatelessWidget {
                   children: <Widget>[
                     RoundFlexibleTextField(),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: RoundButtonIcon(
                         click: () => arrowButtonClick(context),
                       ),
