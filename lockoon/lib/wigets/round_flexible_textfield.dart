@@ -8,7 +8,9 @@ class RoundFlexibleTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Flexible(
-      child: TextField(
+      child: TextFormField(
+        initialValue: "192.168.0.33",
+        keyboardType: TextInputType.number,
         decoration: new InputDecoration(
           hintText: "Server URL and port",
           border: OutlineInputBorder(
