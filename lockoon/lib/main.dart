@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         "/": (context) => ServerSelection(),
         "/unlock": (context) => UnlockScreen(),
       },
-      
-          );
+    );
   }
 }
