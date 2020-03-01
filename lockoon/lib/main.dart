@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lockoon/server_selection.dart';
-import 'package:lockoon/unlock_screen.dart';
+import 'package:lockoon/pages/discover_bt.dart';
+import 'package:lockoon/pages/server_selection.dart';
+import 'package:lockoon/pages/unlock_screen.dart';
 
 import 'core/theme.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => ServerSelection(),
-        "/unlock": (context) => UnlockScreen(),
+        "/unlock": (context) => UnlockScreen(null),
+        "/scan": (context) => DiscoveryPage(),
       },
     );
   }

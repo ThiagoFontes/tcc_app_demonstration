@@ -43,6 +43,8 @@ class ServerSelection extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: RoundButtonIcon(
+                        size: 56,
+                        icon: Icons.arrow_forward,
                         click: () => arrowButtonClick(context),
                       ),
                     )
@@ -56,5 +58,5 @@ class ServerSelection extends StatelessWidget {
     );
   }
 
-  void arrowButtonClick(context) => Navigator.pushNamed(context, "/unlock");
+  void arrowButtonClick(context) => Navigator.pushNamed(context, "/scan");
 }
