@@ -16,7 +16,7 @@ class ServerSelection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(0,0,0,10),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: Text(
                   "Welcome!",
                   style: TextStyle(
@@ -39,7 +39,9 @@ class ServerSelection extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: Row(
                   children: <Widget>[
-                    RoundFlexibleTextField(),
+                    RoundFlexibleTextField(
+                      initialValue: "192.168.1.6",
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: RoundButtonIcon(
