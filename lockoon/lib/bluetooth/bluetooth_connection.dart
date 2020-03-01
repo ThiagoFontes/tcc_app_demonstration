@@ -1,6 +1,6 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:encrypt/encrypt.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 class BluetoothConnectionHandler {
@@ -14,14 +14,14 @@ class BluetoothConnectionHandler {
 
   bool isDisconnecting = false;
 
-  void connect() {
+  Future<void> connect() {
     BluetoothConnection.toAddress(server.address).then((_connection) {
       print('Connected to the device');
       connection = _connection;
       isConnecting = false;
       isDisconnecting = false;
 
-      connection.input.listen(_onDataReceived).onDone(() {
+      return connection.input.listen(_onDataReceived).onDone(() {
         // Example: Detect which side closed the connection
         // There should be `isDisconnecting` flag to show are we are (locally)
         // in middle of disconnecting process, should be set before calling
@@ -71,8 +71,17 @@ class BluetoothConnectionHandler {
     var base64String = base64.encode(data);
 
     if (dataString != "" && dataString != "\r\n") {
-      print("Base64 response: " + base64String);
+      final key = Key.fromUtf8("4To4jyTAOMvf99fx");
+      final IV iv = IV.fromLength(16);
+
+      final encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: null));
+
+      String decrypted;
+      decrypted = encrypter.decrypt(Encrypted.from64(base64String), iv: iv);
+
       print("Raw response: " + dataString);
+      print("Base64 response: " + base64String);
+      print("Decrypted message: " + decrypted);
     }
   }
 
@@ -80,7 +89,7 @@ class BluetoothConnectionHandler {
     text = text.trim();
 
     if (!isConnected) {
-      connect();
+      await connect();
     }
 
     if (text.length > 0) {
