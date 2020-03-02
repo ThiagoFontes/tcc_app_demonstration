@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme(),
       initialRoute: "/",
       routes: {
-        "/": (context) => ServerSelection(),
+        "/": (context) => ServerSelectionPage(),
         "/unlock": (context) => UnlockScreen(null),
         "/scan": (context) => DiscoveryPage(),
       },

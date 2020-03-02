@@ -8,8 +8,8 @@ part of 'server_selection_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ServerSelection on _ServerSelection, Store {
-  final _$serverStatusAtom = Atom(name: '_ServerSelection.serverStatus');
+mixin _$ServerSelectionStore on _ServerSelectionStore, Store {
+  final _$serverStatusAtom = Atom(name: '_ServerSelectionStore.serverStatus');
 
   @override
   int get serverStatus {
@@ -29,9 +29,9 @@ mixin _$ServerSelection on _ServerSelection, Store {
   final _$requestDecryptionKeyAsyncAction = AsyncAction('requestDecryptionKey');
 
   @override
-  Future<void> requestDecryptionKey() {
+  Future<void> requestDecryptionKey(String serverIp) {
     return _$requestDecryptionKeyAsyncAction
-        .run(() => super.requestDecryptionKey());
+        .run(() => super.requestDecryptionKey(serverIp));
   }
 
   @override

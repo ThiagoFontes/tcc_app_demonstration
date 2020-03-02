@@ -1,13 +1,49 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:lockoon/core/consts.dart';
+import 'package:lockoon/stores/server_selection_store.dart';
 import 'package:lockoon/wigets/round_button_icon.dart';
 import 'package:lockoon/wigets/round_flexible_textfield.dart';
+import 'package:mobx/mobx.dart';
 
-class ServerSelection extends StatelessWidget {
+class ServerSelectionPage extends StatefulWidget {
+  @override
+  _ServerSelectionPageState createState() => _ServerSelectionPageState();
+}
+
+class _ServerSelectionPageState extends State<ServerSelectionPage> {
+  final ServerSelectionStore store = ServerSelectionStore();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  List<ReactionDisposer> _disposers;
+
+  @override
+  void initState() {
+    super.initState();
+
+    reaction(
+      (_) => store.serverStatus,
+      (int status) {
+        if (status == STATUS_SUCCESS_RESPONSE) {
+          Navigator.pushNamed(context, "/scan");
+        }
+        if (status == STATUS_ERROR_RESPONSE) {
+          _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: Text("Something went wrong :c"),
+              duration: Duration(seconds: 5),
+            ),
+          );
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -44,11 +80,20 @@ class ServerSelection extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: RoundButtonIcon(
-                        size: 56,
-                        icon: Icons.arrow_forward,
-                        click: () => arrowButtonClick(context),
-                      ),
+                      child: Observer(builder: (_) {
+                        if (store.serverStatus == STATUS_WAITING_RESPONSE) {
+                          return CircularProgressIndicator();
+                          // } else if (store.serverStatus == STATUS_INITIAL) {
+                        } else {
+                          return RoundButtonIcon(
+                            size: 56,
+                            icon: Icons.arrow_forward,
+                            click: () =>
+                                store.requestDecryptionKey("192.168.1.6"),
+                            // click: () => arrowButtonClick(context),
+                          );
+                        }
+                      }),
                     )
                   ],
                 ),
@@ -59,6 +104,4 @@ class ServerSelection extends StatelessWidget {
       ),
     );
   }
-
-  void arrowButtonClick(context) => Navigator.pushNamed(context, "/scan");
 }
