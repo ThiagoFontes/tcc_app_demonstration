@@ -82,7 +82,11 @@ class _ServerSelectionPageState extends State<ServerSelectionPage> {
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: Observer(builder: (_) {
                         if (store.serverStatus == STATUS_WAITING_RESPONSE) {
-                          return CircularProgressIndicator();
+                          return SizedBox(
+                            height: 56,
+                            width: 56,
+                            child: CircularProgressIndicator(),
+                          );
                           // } else if (store.serverStatus == STATUS_INITIAL) {
                         } else {
                           return RoundButtonIcon(

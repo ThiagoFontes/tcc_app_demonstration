@@ -77,13 +77,17 @@ class BluetoothConnectionHandler {
       final encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: null));
 
       String decrypted;
-      decrypted = encrypter.decrypt(Encrypted.from64(base64String), iv: iv);
+      try{
+        decrypted = encrypter.decrypt(Encrypted.from64(base64String), iv: iv);
 
-      sendMessage(decrypted);
+        sendMessage(decrypted);
 
-      print("Raw response: " + dataString);
-      print("Base64 response: " + base64String);
-      print("Decrypted message: " + decrypted);
+        print("Raw response: " + dataString);
+        print("Base64 response: " + base64String);
+        print("Decrypted message: " + decrypted);
+      } catch (_) {
+        sendMessage("Start");
+      }
     }
   }
 
