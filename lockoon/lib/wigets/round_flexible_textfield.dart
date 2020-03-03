@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class RoundFlexibleTextField extends StatelessWidget {
   final String initialValue;
   const RoundFlexibleTextField({
-    Key key, @required this.initialValue,
+    Key key,
+    @required this.initialValue,
   }) : super(key: key);
 
   @override

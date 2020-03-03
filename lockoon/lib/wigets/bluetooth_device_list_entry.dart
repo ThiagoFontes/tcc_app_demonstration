@@ -12,8 +12,8 @@ class BluetoothDeviceListEntry extends ListTile {
           onTap: onTap,
           onLongPress: onLongPress,
           enabled: enabled,
-          leading:
-              Icon(Icons.bluetooth), // @TODO . !BluetoothClass! class aware icon
+          leading: Icon(
+              Icons.bluetooth), // @TODO . !BluetoothClass! class aware icon
           title: Text(device.name ?? "Unknown device"),
           subtitle: Text(device.address.toString()),
           trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[

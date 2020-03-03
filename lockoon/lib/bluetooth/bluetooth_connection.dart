@@ -77,7 +77,7 @@ class BluetoothConnectionHandler {
       final encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: null));
 
       String decrypted;
-      try{
+      try {
         decrypted = encrypter.decrypt(Encrypted.from64(base64String), iv: iv);
 
         sendMessage(decrypted);

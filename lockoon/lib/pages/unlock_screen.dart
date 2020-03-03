@@ -15,7 +15,6 @@ class UnlockScreen extends StatelessWidget {
         BluetoothConnectionHandler(deviceArg.device);
     connectionHandler.connect();
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(222, 222, 225, 1),
       appBar: AppBar(
         title: Text(deviceArg.device.name),
       ),

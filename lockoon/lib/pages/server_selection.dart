@@ -22,22 +22,30 @@ class _ServerSelectionPageState extends State<ServerSelectionPage> {
   void initState() {
     super.initState();
 
-    reaction(
-      (_) => store.serverStatus,
-      (int status) {
-        if (status == STATUS_SUCCESS_RESPONSE) {
-          Navigator.pushNamed(context, "/scan");
-        }
-        if (status == STATUS_ERROR_RESPONSE) {
-          _scaffoldKey.currentState.showSnackBar(
-            SnackBar(
-              content: Text("Something went wrong :c"),
-              duration: Duration(seconds: 5),
-            ),
-          );
-        }
-      },
-    );
+    _disposers ??= [
+      reaction(
+        (_) => store.serverStatus,
+        (int status) {
+          if (status == STATUS_SUCCESS_RESPONSE) {
+            Navigator.pushNamed(context, "/scan");
+          }
+          if (status == STATUS_ERROR_RESPONSE) {
+            _scaffoldKey.currentState.showSnackBar(
+              SnackBar(
+                content: Text("Something went wrong :c"),
+                duration: Duration(seconds: 5),
+              ),
+            );
+          }
+        },
+      )
+    ];
+  }
+
+  @override
+  void dispose() {
+    _disposers.forEach((d) => d());
+    super.dispose();
   }
 
   @override
@@ -85,16 +93,15 @@ class _ServerSelectionPageState extends State<ServerSelectionPage> {
                           return SizedBox(
                             height: 56,
                             width: 56,
-                            child: CircularProgressIndicator(),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 5,
+                            ),
                           );
-                          // } else if (store.serverStatus == STATUS_INITIAL) {
                         } else {
                           return RoundButtonIcon(
                             size: 56,
                             icon: Icons.arrow_forward,
-                            click: () =>
-                                store.requestDecryptionKey("192.168.1.6"),
-                            // click: () => arrowButtonClick(context),
+                            click: () => store.ping("192.168.1.6"),
                           );
                         }
                       }),
