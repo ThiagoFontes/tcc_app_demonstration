@@ -19,15 +19,12 @@ class UnlockScreen extends StatelessWidget {
         title: Text(deviceArg.device.name),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Switch(
-                value: true,
-                onChanged: (bool value) {},
-              ),
+              Container(),
             ],
           ),
           RoundButtonIcon(
@@ -36,10 +33,10 @@ class UnlockScreen extends StatelessWidget {
             icon: Icons.lock_outline,
             iconSize: 80,
           ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Text("Output:\nInput:"),
-          ),
+          // Padding(
+          // padding: const EdgeInsets.all(18.0),
+          // child: Text("Output:\nInput:"),
+          // ),
         ],
       ),
     );

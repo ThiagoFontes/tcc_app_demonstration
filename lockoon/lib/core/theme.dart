@@ -11,7 +11,7 @@ ThemeData appTheme() {
     accentColor: Color(0xFF4B33A2),
     primaryColor: Color(0xFF704581),
     primaryTextTheme: TextTheme(
-      headline6: TextStyle(
+      title: TextStyle(
         color: Color(0xFFE6E7F0),
       ),
     ),
