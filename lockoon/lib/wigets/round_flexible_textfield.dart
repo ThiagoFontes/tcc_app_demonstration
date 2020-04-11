@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 
 class RoundFlexibleTextField extends StatelessWidget {
   final String initialValue;
+  final TextEditingController myController;
   const RoundFlexibleTextField({
     Key key,
-    @required this.initialValue,
+    @required this.myController,
+    this.initialValue,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new Flexible(
       child: TextFormField(
+        controller: myController,
         initialValue: initialValue,
         keyboardType: TextInputType.number,
         decoration: new InputDecoration(

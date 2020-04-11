@@ -14,6 +14,7 @@ class ServerSelectionPage extends StatefulWidget {
 }
 
 class _ServerSelectionPageState extends State<ServerSelectionPage> {
+  final myController = TextEditingController();
   final ServerSelectionStore store = ServerSelectionStore();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   List<ReactionDisposer> _disposers;
@@ -84,7 +85,7 @@ class _ServerSelectionPageState extends State<ServerSelectionPage> {
                 child: Row(
                   children: <Widget>[
                     RoundFlexibleTextField(
-                      initialValue: "192.168.1.6",
+                      myController: myController,
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -101,7 +102,7 @@ class _ServerSelectionPageState extends State<ServerSelectionPage> {
                           return RoundButtonIcon(
                             size: 56,
                             icon: Icons.arrow_forward,
-                            click: () => store.ping("192.168.1.6"),
+                            click: () => store.ping(myController.text),
                           );
                         }
                       }),
